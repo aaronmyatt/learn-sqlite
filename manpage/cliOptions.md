@@ -75,7 +75,7 @@ noData && await $`sqlite3 test.db ${query.join(";")}`;
 
 ### loopAndPrint
 ```ts
-const modes = ["ascii", "box", "json", "markdown", "column", "html", "line", "csv", "list", "table", "tabs"]
+const modes = ["ascii", "box", "json", "markdown", "column", "html", "line", "csv", "list", "table", "tabs", "quote"]
 for (const mode of modes) {
     $.logStep("-"+mode)
     const stdout = await $`sqlite3 -${mode} test.db "SELECT * FROM memos"`.text()
@@ -92,10 +92,27 @@ I'm guessing this is useful for testing?
 $.logStep('-bail')
 ```
 
+## -batch
+The website and manpage summary seem to emphasise Sqlite's prowess in batch processing:
+
+> sqlite3 can also be used within shell scripts and other applications to provide batch processing features
+> $ man sqlite3
+
+I am keen to learn where one could offload to sqlite3 for bulk parallel processing.
+
+[] research use cases for -batch
+```ts
+```
+
 ## -cmd
+I'm guessing this is a way to run a command on startup? Maybe fill stdin with some output and pump it into sqlite3? Can I pair this with https://core.pipedown.dev?
+
+[] research use cases for -cmd
+```ts
+```
 
 ## -echo
-Could be useful for studying, creating turorials, or debugging?
+Seems quite useful, it outputs the SQL commands that are being run. Could be useful for studying, creating turorials, or debugging?
 
 ```ts
 $.logStep('-echo')
